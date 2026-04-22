@@ -8,15 +8,9 @@ public enum DiceType {
 	private final int size;
 	public static Random random_machine;
 
-    /********************* Initializing the Random Machine  *********************/
-    static {
-        random_machine = new Random();
-    }
-
 	private DiceType(int size) {
 		this.size = size;
 	}
-
 	/***
 	 * Roll
 	 * 
@@ -25,20 +19,4 @@ public enum DiceType {
 	public int Roll() {
 		return random_machine.nextInt(this.size) + 1;
 	}
-
-	public static void main(String[] args) {
-
-    /***************************** TESTING BLOCK *****************************
-
-    // Initialize the random machine
-    DiceType.random_machine = new Random();
-
-    // Test the DiceType enum
-    System.out.println("Testing Dice Rolls:");
-
-    for (DiceType dice : DiceType.values()) {
-        System.out.println("Rolling a " + dice.name() + ": " + dice.Roll());
-    }
-    *************************************************************************/
-}
 }

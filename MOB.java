@@ -4,17 +4,17 @@ public class MOB implements Attributes {
     protected DiceType damageDie;
     protected int hitModifier;
     protected int maxHP;
-    protected int hp;
     private final String name;
     
 
     // MOB Constructor
     public MOB(String name, int hp, int armor, int hitModifier, DiceType damageDie) {
         this.name = name;
-        this.hp = getMaxHP();
+        hp = maxHP;
         this.armor = armor;
         this.hitModifier = hitModifier;
         this.damageDie = damageDie;
+        damage = 0;
     }
 
     // Adding Damage
@@ -33,7 +33,7 @@ public class MOB implements Attributes {
     }
 
     public int getHP() {
-        return hp;
+        return maxHP - damage;
     }
 
     public String getName() {
