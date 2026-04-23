@@ -17,31 +17,39 @@ public class Knight extends MOB {
     // Getters
     @Override
     public int getArmor() {
-        if(!getActiveFortune().equals(null)) {
+        if(getActiveFortune() == null) {
+             return super.getArmor();
+        } else {
         return armor + getActiveFortune().getArmor(); 
-        } else { return super.getArmor();}
+        } 
 
     }
     @Override
     public DiceType getDamageDie() {
-        if(!getActiveFortune().equals(null)) {
+        if(getActiveFortune() == null) {
+             return super.getDamageDie();
+        } else {
             return getActiveFortune().getDamageDie();
-        } else { return super.getDamageDie();}
+        } 
     } 
     @Override
     public int getHitModifier() {
-        if(!getActiveFortune().equals(null)) {
-            return getHitModifier() + getActiveFortune().getHitModifier();
-        } else { return super.getHitModifier();}
+        if(getActiveFortune() == null) {
+            return super.getHitModifier();
+        } else {
+            return super.getHitModifier() + getActiveFortune().getHitModifier();
+        } 
     }
     public Integer getID() {
         return ID;
     }
     @Override
     public int getMaxHP() {
-        if(!getActiveFortune().equals(null)) {
+        if(getActiveFortune() == null) {
+            return super.getMaxHP();
+        } else {
         return maxHP + getActiveFortune().getMaxHP();
-        } else {return super.getMaxHP();}
+        } 
     }
     public int getXP() {
         return xp;

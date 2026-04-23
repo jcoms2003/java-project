@@ -10,16 +10,15 @@ public class MOB implements Attributes {
     // MOB Constructor
     public MOB(String name, int hp, int armor, int hitModifier, DiceType damageDie) {
         this.name = name;
-        hp = maxHP;
+        maxHP = hp;
         this.armor = armor;
         this.hitModifier = hitModifier;
         this.damageDie = damageDie;
-        damage = 0;
     }
 
     // Adding Damage
-    public void addDamage(int d) {
-        damage += d;
+    public void addDamage(int damage) {
+        this.damage += damage;
     }
 
     // MOB copy method
