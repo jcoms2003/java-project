@@ -5,7 +5,7 @@ public class ConsoleView implements GameView{
     private final Scanner in = new Scanner(System.in);
 
     public ConsoleView() {
-
+        
     }
     
     public void splashScreen() {
@@ -18,6 +18,14 @@ public class ConsoleView implements GameView{
         System.out.println("What would you like to do?");
         String userInput = in.nextLine();
         return userInput;
+    }
+    public void knightNotFound() {
+        System.out.println("Knight not found!");
+    }
+    public void setActiveFailed() {
+        if(activeKnights.size() == 4) {
+            System.out.println("Unable to set active knight. Only four can be active at a time.");
+        }
     }
     public void printHelp() {
         System.out.println("Unsure what to do, here are some options:\r\n" + //
