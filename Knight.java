@@ -29,7 +29,12 @@ public class Knight extends MOB {
         if(getActiveFortune() == null) {
              return super.getDamageDie();
         } else {
-            return getActiveFortune().getDamageDie();
+            if(getActiveFortune().getDamageDie() == null) {
+                return super.getDamageDie();
+            } else {
+                return getActiveFortune().getDamageDie();
+                
+            }
         } 
     } 
     @Override
