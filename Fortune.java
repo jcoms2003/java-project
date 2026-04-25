@@ -1,3 +1,6 @@
+/******************** Joshua C CS162 ********************/
+/******************* FINAL DRAFT DONE *******************/
+
 public class Fortune implements Attributes {
     private final int armor;
     private final int hpBonus;

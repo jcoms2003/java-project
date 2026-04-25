@@ -1,3 +1,6 @@
+/******************** Joshua C CS162 ********************/
+/******************* FINAL DRAFT DONE *******************/
+
 public class Knight extends MOB {
     private Fortune activeFortune;
     protected final int ID;

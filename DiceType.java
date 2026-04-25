@@ -1,5 +1,5 @@
 /******************** Joshua C CS162 ********************/
-/******************* FIRST DRAFT DONE *******************/
+/******************* FINAL DRAFT DONE *******************/
 
 import java.util.Random;
 public enum DiceType {

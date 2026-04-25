@@ -1,3 +1,6 @@
+/******************** Joshua C CS162 ********************/
+/******************* FINAL DRAFT DONE *******************/
+
 public class MOB implements Attributes {
     protected int armor;
     protected int damage;

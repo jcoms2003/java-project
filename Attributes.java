@@ -1,5 +1,5 @@
 /******************** Joshua C CS162 ********************/
-/******************* FIRST DRAFT DONE *******************/
+/******************* FINAL DRAFT DONE *******************/
 public interface Attributes {
     int getArmor();
     int getMaxHP();
