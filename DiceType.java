@@ -11,6 +11,9 @@ public enum DiceType {
 	private DiceType(int size) {
 		this.size = size;
 	}
+	static {
+    	random_machine = new Random();
+	}
 	/***
 	 * Roll
 	 * 

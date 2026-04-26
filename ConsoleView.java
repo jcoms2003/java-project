@@ -23,7 +23,7 @@ public class ConsoleView implements GameView{
         System.out.println("Knight not found!");
     }
     public void setActiveFailed() {
-        if(activeKnights.size() == 4) {
+        if(GameView.activeKnights.size() == 4) {
             System.out.println("Unable to set active knight. Only four can be active at a time.");
         }
     }
@@ -101,7 +101,7 @@ public class ConsoleView implements GameView{
         }
     }
     public void printDefeated() {
-        if(activeKnights.size() == 0) {
+        if() {
             System.out.println("All active knights have been defeated!" + "\n");
         }
     }

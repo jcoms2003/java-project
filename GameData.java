@@ -35,6 +35,11 @@ public abstract class GameData {
         }
         return null;
     }
+
+    public List<Knight> getActiveKnights() {
+        return activeKnights;
+    }
+
     public Knight getKnight(String nameOrID) {
         for(Knight knight : knights) {
             if(knight.getName().equalsIgnoreCase(nameOrID) || knight.getID().toString().equals(nameOrID)) {
