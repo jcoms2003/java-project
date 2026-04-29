@@ -1,10 +1,8 @@
 /******************** Joshua C CS162 ********************/
 /******************* FIRST DRAFT DONE *******************/
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -22,79 +20,71 @@ public class CSVGameData extends GameData {
         int counter = 0;
         Scanner file = readFile(saveData);
         if(file == null) return;
-        while(file.hasNextLine()) {
-            Scanner line = new Scanner(file.nextLine());
-            line.useDelimiter(","); 
-            Knight kt = new Knight(
-                    ++counter,
-                    line.next().trim(),
-                    line.nextInt(),
-                    line.nextInt(),
-                    line.nextInt(),
-                    DiceType.valueOf(line.next()),
-                    line.nextInt());
-            knights.add(kt);
+        try {
+            while(file.hasNextLine()) {
+                Scanner line = new Scanner(file.nextLine());
+                line.useDelimiter(","); 
+                try {
+                    Knight kt = new Knight(
+                            ++counter,
+                            line.next().trim(),
+                            line.nextInt(),
+                            line.nextInt(),
+                            line.nextInt(),
+                            DiceType.valueOf(line.next()),
+                            line.nextInt());
+                    knights.add(kt);
+                } finally {
+                    line.close();
+                }
+            }
+        } finally {
+            file.close();
         }
     }
     void loadGameData(String gamedata) {
         Scanner file = readFile(gamedata);
         if (file == null) return;
 
-        while (file.hasNextLine()) {
-            String dataLine = file.nextLine().trim();
-            if (dataLine.isEmpty()) continue;
+        try {
+            while (file.hasNextLine()) {
+                String dataLine = file.nextLine().trim();
+                if (dataLine.isEmpty()) continue;
 
-            Scanner line = new Scanner(dataLine);
-            line.useDelimiter(",");
-
-            String type = line.next().trim();
-            if (type.equals("MOB")) {
-                String name = line.next().trim();
-                int hp = line.nextInt();
-                int armor = line.nextInt();
-                int hitModifier = line.nextInt();
-                DiceType damage = DiceType.valueOf(line.next().trim());
-                MOB mob = new MOB(name, hp, armor, hitModifier, damage);
-                monsters.add(mob);
-            } else if (type.equals("FORTUNE")) {
-                String name = line.next().trim();
-                int hp = line.nextInt();
-                int armor = line.nextInt();
-                int hitModifier = line.nextInt();
-                String damageStr = line.next().trim();
-                DiceType damage = null;
-                if (!damageStr.equals("-")) {
-                    damage = DiceType.valueOf(damageStr);
+                Scanner line = new Scanner(dataLine);
+                line.useDelimiter(",");
+                try {
+                    String type = line.next().trim();
+                    if (type.equals("MOB")) {
+                        String name = line.next().trim();
+                        int hp = line.nextInt();
+                        int armor = line.nextInt();
+                        int hitModifier = line.nextInt();
+                        DiceType damage = DiceType.valueOf(line.next().trim());
+                        MOB mob = new MOB(name, hp, armor, hitModifier, damage);
+                        monsters.add(mob);
+                    } else if (type.equals("FORTUNE")) {
+                        String name = line.next().trim();
+                        int hp = line.nextInt();
+                        int armor = line.nextInt();
+                        int hitModifier = line.nextInt();
+                        String damageStr = line.next().trim();
+                        DiceType damage = null;
+                        if (!damageStr.equals("-")) {
+                            damage = DiceType.valueOf(damageStr);
+                        }
+                        Fortune fortune = new Fortune(name, hp, armor, hitModifier, damage);
+                        fortunes.add(fortune);
+                    }
+                } finally {
+                    line.close();
                 }
-                Fortune fortune = new Fortune(name, hp, armor, hitModifier, damage);
-                fortunes.add(fortune);
             }
+        } finally {
+            file.close();
         }
     }
-    private void parseGameDataLine(Scanner line) {
-        String type = line.next().trim();
-        if (type.equals("MOB")) {
-            String name = line.next().trim();
-            int hp = line.nextInt();
-            int armor = line.nextInt();
-            int hitModifier = line.nextInt();
-            DiceType damage = DiceType.valueOf(line.next().trim());
-            MOB mob = new MOB(name, hp, armor, hitModifier, damage);
-            monsters.add(mob);
-        } else if (type.equals("FORTUNE")) {
-            String name = line.next().trim();
-            int hp = line.nextInt();
-            int armor = line.nextInt();
-            int hitModifier = line.nextInt();
-            String damageStr = line.next().trim();
-            DiceType damage = null;
-            if (!damageStr.equals("-")) {
-                damage = DiceType.valueOf(damageStr);
-            }
-            Fortune fortune = new Fortune(name, hp, armor, hitModifier, damage);
-            fortunes.add(fortune);
-        }
-    }
+    
     public void save(String filename) {
         try (PrintWriter writer = new PrintWriter(filename)) {
             for (Knight knight : knights) {

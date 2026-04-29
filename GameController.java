@@ -24,51 +24,67 @@ public class GameController {
         boolean end = true;
         while (end) {
             String choice = view.displayMainMenu();
-            if(choice.equalsIgnoreCase("Exit") || choice.equalsIgnoreCase("Bye")) {
-                view.endGame();
-                
-            } 
-            else if(choice.equalsIgnoreCase("ls") || choice.equalsIgnoreCase("list all")) {
-                data.getKnights();
-                startQ();
-            }
-            else if(choice.startsWith("show")) {
-                System.out.println("GOOD!");
-                startQ();
-            } 
-        } 
+            end = processCommand(choice);
+        }
     }
-    /*protected boolean processCommand(String command) {
-        String choice = command; 
-        if(choice.equalsIgnoreCase("Exit") || choice.equalsIgnoreCase("Bye")) {
+
+    protected boolean processCommand(String command) {
+        if(command.equalsIgnoreCase("Exit") || command.equalsIgnoreCase("Bye")) {
             view.endGame();
             return false;
         } 
-        else if(choice.equalsIgnoreCase("ls") || choice.equalsIgnoreCase("list all")) {
-            data.getKnights();
-            start();
+        else if(command.equalsIgnoreCase("ls") || command.equalsIgnoreCase("list all")) {
+            view.listKnights(data.getKnights());
         }
-        else if(choice.startsWith("show")) {
-
-        } return true;
-    }*/
+        else if(command.equalsIgnoreCase("list active")) {
+            view.listKnights(data.getActiveKnights());
+        }
+        else if(command.startsWith("show")) {
+            String nameOrID = command.substring(4).trim();
+            processShowKnight(nameOrID);
+        }
+        else if(command.startsWith("set active")) {
+            String nameOrID = command.substring(10).trim();
+            processSetActive(nameOrID);
+        }
+        else if(command.startsWith("remove active")) {
+            String nameOrID = command.substring(13).trim();
+            processRemoveActive(nameOrID);
+        }
+        else if(command.equalsIgnoreCase("explore") || command.equalsIgnoreCase("adventure") || command.equalsIgnoreCase("quest")) {
+            engine.initialize();
+            engine.runCombat();
+            engine.clear();
+        }
+        else if(command.startsWith("save")) {
+            String filename = command.substring(4).trim();
+            if(filename.isEmpty()) {
+                filename = "saveData.csv";
+            }
+            data.save(filename);
+        }
+        else {
+            view.printHelp();
+        }
+        return true;
+    }
     private void processRemoveActive(String remove) {
-        String nameOrID = remove;
-        List<Knight> actKt = data.getActiveKnights();
-        for(Knight knight : actKt) {
-            if(knight.getName().equalsIgnoreCase(nameOrID) || knight.getID().toString().equalsIgnoreCase(nameOrID)) {
-                data.removeActive(knight);
-            } else {view.knightNotFound();}
+        Knight knight = data.getActive(remove);
+        if(knight != null) {
+            data.removeActive(knight);
+        } else {
+            view.knightNotFound();
         }
     }
     private void processSetActive(String activeKt) {
         Knight kt = data.getKnight(activeKt);
         if(kt != null) {
-            data.setActive(kt);
-            if(data.setActive(kt) == false) {
+            if(!data.setActive(kt)) {
                 view.setActiveFailed();
             }
-        } else {view.knightNotFound();}
+        } else {
+            view.knightNotFound();
+        }
     }
 
     private void processShowKnight(String nameOrID) {
@@ -84,6 +100,22 @@ public class GameController {
         List<MOB> monsters = new ArrayList<>();
         List<Knight> knights = new ArrayList<>();
         List<Knight> activeKnights = new ArrayList<>();
+
+        // Populate fortunes with test data
+        fortunes.add(new Fortune("Lucky Strike", 5, 2, 1, DiceType.D12));
+        fortunes.add(new Fortune("Iron Skin", 0, 5, 0));
+        fortunes.add(new Fortune("Swift Blade", 0, 0, 2, DiceType.D10));
+
+        // Populate monsters with test data
+        monsters.add(new MOB("Goblin", 15, 10, 1, DiceType.D8));
+        monsters.add(new MOB("Orc", 25, 12, 2, DiceType.D10));
+        monsters.add(new MOB("Troll", 40, 14, 3, DiceType.D12));
+
+        // Populate knights with test data
+        knights.add(new Knight(1, "Arthur", 50, 16, 3, DiceType.D10, 0));
+        knights.add(new Knight(2, "Lancelot", 45, 15, 4, DiceType.D10, 0));
+        knights.add(new Knight(3, "Galahad", 40, 14, 2, DiceType.D8, 0));
+        knights.add(new Knight(4, "Mordred", 55, 17, 5, DiceType.D12, 0));
 
         // Initialize GameData
         GameData data = new GameData(fortunes, monsters, knights, activeKnights) {
