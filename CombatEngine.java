@@ -34,14 +34,6 @@ public class CombatEngine {
         view.printFortunes(knights);
         sleep(5000);
     }
-    /**********************************FOR TESTING ONLY************************************* */
-    // public void initialize() {
-    //     List<Knight> knights = data.knights;
-    //     for(Knight knight : knights) {
-    //         knight.setActiveFortune(data.getRandomFortune());
-    //     }
-    //     view.printFortunes(knights);
-    // }
 
     public void runCombat() {  /* Optional Method */  
         // Check if there are active knights
@@ -100,44 +92,6 @@ public class CombatEngine {
                 }
             }
     }
-    
-    // private int doBattle(List<MOB> attackers, List<Knight> defenders) {
-    //     // naming index for one on one combat
-    //     int interate = 0;
-    //     MOB m = attackers.get(interate);
-    //     Knight k = defenders.get(interate);
-    //     for(int i = 0; i <= defenders.size(); i++) {
-    //         int roll = DiceType.D20.Roll();
-    //         int totalM = roll + m.getHitModifier();
-    //         int totalK = roll + k.getHitModifier();
-            
-    //         // Check mob win
-    //         if(totalM > k.getArmor()) {
-    //             int newRoll = m.getDamageDie().Roll();
-    //             k.addDamage(newRoll);
-    //         }
-    //         // Check Knight win
-    //         else if(totalK > m.getArmor()) {
-    //             int newRoll = k.getDamageDie().Roll();
-    //             m.addDamage(newRoll);
-    //         }
-    //         // Check if mob defeated
-    //         if(m.getHP() <= 0) {
-    //             view.printBattleText(m);
-    //             for(Knight knight : defenders) {
-    //                 knight.addXP(1);
-    //             }
-    //         }
-    //         // Check if knight defeated
-    //         else if(k.getHP() <+ 0) {
-    //             view.printBattleText(k);
-    //             data.removeActive(k);
-    //         }
-
-    //     }
-        
-    // }
-
     // Cycles through all the knights and sets fortune to "null" 
     public void clear() {
         List<Knight> knights = data.knights;
@@ -145,39 +99,89 @@ public class CombatEngine {
             knight.setActiveFortune(null);
         }
     }
+    /**********************************FOR TESTING ONLY*************************************/
+    // public void initialize() {                                                           |
+    //     List<Knight> knights = data.knights;                                             |
+    //     for(Knight knight : knights) {                                                   |
+    //         knight.setActiveFortune(data.getRandomFortune());                            |
+    //     }                                                                                |
+    //     view.printFortunes(knights);                                                     |
+    // }                                                                                    |
+    /***************************************************************************************/
+    
+    /***********************************TESTING*****************************************/
+    // private int doBattle(List<MOB> attackers, List<Knight> defenders) {              |
+    //     // naming index for one on one combat                                        |
+    //     int interate = 0;                                                            |
+    //     MOB m = attackers.get(interate);                                             |
+    //     Knight k = defenders.get(interate);                                          |
+    //     for(int i = 0; i <= defenders.size(); i++) {                                 |
+    //         int roll = DiceType.D20.Roll();                                          |
+    //         int totalM = roll + m.getHitModifier();                                  |
+    //         int totalK = roll + k.getHitModifier();                                  |
+    //                                                                                  |
+    //         // Check mob win                                                         |
+    //         if(totalM > k.getArmor()) {                                              |
+    //             int newRoll = m.getDamageDie().Roll();                               |
+    //             k.addDamage(newRoll);                                                |
+    //         }                                                                        |
+    //         // Check Knight win                                                      |
+    //         else if(totalK > m.getArmor()) {                                         |
+    //             int newRoll = k.getDamageDie().Roll();                               |
+    //             m.addDamage(newRoll);                                                |
+    //         }                                                                        |
+    //         // Check if mob defeated                                                 |
+    //         if(m.getHP() <= 0) {                                                     |
+    //             view.printBattleText(m);                                             |
+    //             for(Knight knight : defenders) {                                     |
+    //                 knight.addXP(1);                                                 |
+    //             }                                                                    |
+    //         }                                                                        |
+    //         // Check if knight defeated                                              |
+    //         else if(k.getHP() <+ 0) {                                                |
+    //             view.printBattleText(k);                                             |
+    //             data.removeActive(k);                                                |
+    //         }                                                                        |
+    //     }                                                                            |
+    // }                                                                                |
+    /***********************************************************************************/
 
     public static void main(String[] args) {
-        // Create game data and view
-        GameData gameData = new CSVGameData("gamedata.csv", "knights.csv");
-        GameView gameView = new ConsoleView();
 
-        // Create combat engine
-        CombatEngine engine = new CombatEngine(gameData, gameView);
-
-                // Test setting active knights
-        System.out.println("Setting active knights...");
-        List<Knight> knights = gameData.getKnights();
-        for (int i = 0; i < Math.min(knights.size(), 4); i++) {
-            Knight knight = knights.get(i);
-            boolean success = gameData.setActive(knight);
-            if (success) {
-                System.out.println("Knight " + knight.getName() + " is now active.");
-            } else {
-                System.out.println("Failed to set knight " + knight.getName() + " as active.");
-            }
-        }
-
-        // Initialize and run combat
-        System.out.println("Initializing combat...");
-        engine.initialize();
-        System.out.println("Running combat...");
-        engine.runCombat();
-
-
-        // // Print active knights
-        // System.out.println("\nActive knights:");
-        // for (Knight activeKnight : gameData.getActiveKnights()) {
-        //     System.out.println(activeKnight);
-        // }
+        /***********************************************************************************************|
+        ====================================FOR TESTING ONLY============================================|
+        // Create game data and view                                                                    |
+        GameData gameData = new CSVGameData("gamedata.csv", "knights.csv");                             |
+        GameView gameView = new ConsoleView();                                                          |
+                                                                                                        |
+        // Create combat engine                                                                         |
+        CombatEngine engine = new CombatEngine(gameData, gameView);                                     |
+                                                                                                        |
+                // Test setting active knights                                                          |
+        System.out.println("Setting active knights...");                                                |
+        List<Knight> knights = gameData.getKnights();                                                   |
+        for (int i = 0; i < Math.min(knights.size(), 4); i++) {                                         |
+            Knight knight = knights.get(i);                                                             |
+            boolean success = gameData.setActive(knight);                                               |
+            if (success) {                                                                              |
+                System.out.println("Knight " + knight.getName() + " is now active.");                   |
+            } else {                                                                                    |
+                System.out.println("Failed to set knight " + knight.getName() + " as active.");         |
+            }                                                                                           |
+        }                                                                                               |
+                                                                                                        |
+        // Initialize and run combat                                                                    |
+        System.out.println("Initializing combat...");                                                   |
+        engine.initialize();                                                                            |
+        System.out.println("Running combat...");                                                        |
+        engine.runCombat();                                                                             |
+                                                                                                        |
+                                                                                                        |
+        // // Print active knights                                                                      |
+        // System.out.println("\nActive knights:");                                                     |
+        // for (Knight activeKnight : gameData.getActiveKnights()) {                                    |
+        //     System.out.println(activeKnight);                                                        |
+        // }                                                                                            |
+        ************************************************************************************************/                                                     
     }
 }

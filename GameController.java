@@ -1,6 +1,5 @@
 /******************** Joshua C CS162 ********************/
-/******************* FIRST DRAFT NotDONEE *******************/
-/* Need to finish processCommand and Start */
+/******************* FIRST DRAFT DONE *******************/
 
 import java.util.List;
 import java.util.ArrayList;
@@ -113,48 +112,50 @@ public class GameController {
     }
 
     public static void main(String[] args) {
-        // Mock data for GameData
-        List<Fortune> fortunes = new ArrayList<>();
-        List<MOB> monsters = new ArrayList<>();
-        List<Knight> knights = new ArrayList<>();
-        List<Knight> activeKnights = new ArrayList<>();
-
-        // Populate fortunes with test data
-        fortunes.add(new Fortune("Lucky Strike", 5, 2, 1, DiceType.D12));
-        fortunes.add(new Fortune("Iron Skin", 0, 5, 0));
-        fortunes.add(new Fortune("Swift Blade", 0, 0, 2, DiceType.D10));
-
-        // Populate monsters with test data
-        monsters.add(new MOB("Goblin", 15, 10, 1, DiceType.D8));
-        monsters.add(new MOB("Orc", 25, 12, 2, DiceType.D10));
-        monsters.add(new MOB("Troll", 40, 14, 3, DiceType.D12));
-
-        // Populate knights with test data
-        knights.add(new Knight(1, "Arthur", 50, 16, 3, DiceType.D10, 0));
-        knights.add(new Knight(2, "Lancelot", 45, 15, 4, DiceType.D10, 0));
-        knights.add(new Knight(3, "Galahad", 40, 14, 2, DiceType.D8, 0));
-        knights.add(new Knight(4, "Mordred", 55, 17, 5, DiceType.D12, 0));
-
-        // Initialize GameData
-        GameData data = new GameData(fortunes, monsters, knights, activeKnights) {
-            @Override
-            public void save(String s) {
-                    // TODO Auto-generated method stub
-
-            }
-            // Provide any necessary overrides if GameData has abstract methods
-        };
-
-        // Initialize ConsoleView
-        GameView view = new ConsoleView();
-
-        // Initialize CombatEngine
-        CombatEngine engine = new CombatEngine(data, view);
-
-        // Create GameController instance
-        GameController controller = new GameController(data, view, engine);
-
-        // Call the start method to test interactively
-        controller.start();
+        /********************************************************************************
+        ================================TESTING=========================================|
+        // Mock data for GameData                                                       |
+        List<Fortune> fortunes = new ArrayList<>();                                     |
+        List<MOB> monsters = new ArrayList<>();                                         |
+        List<Knight> knights = new ArrayList<>();                                       |
+        List<Knight> activeKnights = new ArrayList<>();                                 |
+                                                                                        |
+        // Populate fortunes with test data                                             |
+        fortunes.add(new Fortune("Lucky Strike", 5, 2, 1, DiceType.D12));               |
+        fortunes.add(new Fortune("Iron Skin", 0, 5, 0));                                |
+        fortunes.add(new Fortune("Swift Blade", 0, 0, 2, DiceType.D10));                |
+                                                                                        |
+        // Populate monsters with test data                                             |
+        monsters.add(new MOB("Goblin", 15, 10, 1, DiceType.D8));                        |
+        monsters.add(new MOB("Orc", 25, 12, 2, DiceType.D10));                          |
+        monsters.add(new MOB("Troll", 40, 14, 3, DiceType.D12));                        |
+                                                                                        |
+        // Populate knights with test data                                              |
+        knights.add(new Knight(1, "Arthur", 50, 16, 3, DiceType.D10, 0));               |
+        knights.add(new Knight(2, "Lancelot", 45, 15, 4, DiceType.D10, 0));             |
+        knights.add(new Knight(3, "Galahad", 40, 14, 2, DiceType.D8, 0));               |
+        knights.add(new Knight(4, "Mordred", 55, 17, 5, DiceType.D12, 0));              |
+                                                                                        |
+        // Initialize GameData                                                          |
+        GameData data = new GameData(fortunes, monsters, knights, activeKnights) {      |
+            @Override                                                                   |
+            public void save(String s) {                                                |
+                                                                                        |
+            }                                                                           |
+            // Provide any necessary overrides if GameData has abstract methods         |
+        };                                                                              |
+                                                                                        |
+        // Initialize ConsoleView                                                       |
+        GameView view = new ConsoleView();                                              |
+                                                                                        |
+        // Initialize CombatEngine                                                      |
+        CombatEngine engine = new CombatEngine(data, view);                             |
+                                                                                        |
+        // Create GameController instance                                               |
+        GameController controller = new GameController(data, view, engine);             |
+                                                                                        |
+        // Call the start method to test interactively                                  |
+        controller.start();                                                             |
+        ********************************************************************************/      
     }
 }

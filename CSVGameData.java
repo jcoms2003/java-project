@@ -105,31 +105,31 @@ public class CSVGameData extends GameData {
     }
 
     public static void main(String[] args) {
-        /* 
+        /************************************************************************
         ========================================================================|
         ====================== THIS IS FOR TESTING ONLY ========================|
         // Test file paths                                                      |
         String gameDataFile = "gamedata.csv";                                   |   
         String saveDataFile = "knights.csv";                                    |
-
-        // Create an instance of CSVGameData
-        CSVGameData gameData = new CSVGameData(gameDataFile, saveDataFile);
-
-        // Test loading game data
-        System.out.println("Monsters loaded:");
-        for (MOB mob : gameData.monsters) {
-            System.out.println(mob);
-        }
-
-        System.out.println("\nFortunes loaded:");
-        for (Fortune fortune : gameData.fortunes) {
-            System.out.println(fortune);
-        }
-
-        // Test saving knights data
-        System.out.println("\nSaving knights to file...");
-        gameData.save(saveDataFile);
-        System.out.println("Knights saved to " + saveDataFile);
-        */
+                                                                                |
+        // Create an instance of CSVGameData                                    |
+        CSVGameData gameData = new CSVGameData(gameDataFile, saveDataFile);     |
+                                                                                |
+        // Test loading game data                                               |
+        System.out.println("Monsters loaded:");                                 |
+        for (MOB mob : gameData.monsters) {                                     |
+            System.out.println(mob);                                            |
+        }                                                                       |
+                                                                                |
+        System.out.println("\nFortunes loaded:");                               |
+        for (Fortune fortune : gameData.fortunes) {                             |
+            System.out.println(fortune);                                        |
+        }                                                                       |   
+                                                                                |        
+        // Test saving knights data                                             |
+        System.out.println("\nSaving knights to file...");                      |
+        gameData.save(saveDataFile);                                            |
+        System.out.println("Knights saved to " + saveDataFile);                 |
+        ************************************************************************/
     }
 }
