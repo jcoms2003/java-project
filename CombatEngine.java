@@ -3,6 +3,8 @@
 
 import java.util.Random;
 import java.util.List;
+import java.lang.InterruptedException; 
+
 
 public class CombatEngine {
     private final GameData data;
@@ -16,12 +18,21 @@ public class CombatEngine {
         this.rnd = new Random();
     }
     // Methods
+    public static void sleep(long m) {
+        try {
+            Thread.sleep(m); // Pauses for 2 seconds
+        } catch (InterruptedException e) {
+        // Handle the exception if the sleep is interrupted
+        }
+
+    }
     public void initialize() {
         List<Knight> knights = data.getActiveKnights();
         for(Knight knight : knights) {
             knight.setActiveFortune(data.getRandomFortune());
         }
         view.printFortunes(knights);
+        sleep(5000);
     }
     /**********************************FOR TESTING ONLY************************************* */
     // public void initialize() {
@@ -69,6 +80,7 @@ public class CombatEngine {
                 for(Knight knight : data.activeKnights) {
                     knight.addXP(1);
                 }
+            rndMobs.remove(m);
             }
             // Check if knight defeated
             else if(k.getHP() <+ 0) {

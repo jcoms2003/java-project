@@ -29,11 +29,29 @@ public class GameController {
     }
 
     protected boolean processCommand(String command) {
+        // Map numeric inputs to corresponding commands
+        switch (command) {
+            case "1":
+                command = "list all";
+                break;
+            case "2":
+                command = "list active";
+                break;
+            case "3":
+                command = "show"; // Placeholder for specific knight details
+                break;
+            case "4":
+                command = "explore";
+                break;
+            default:
+                break;
+        }
+
         if(command.equalsIgnoreCase("Exit") || command.equalsIgnoreCase("Bye")) {
             view.endGame();
             return false;
         } 
-        else if(command.equalsIgnoreCase("ls") || command.equalsIgnoreCase("list all")) {
+        else if(command.equalsIgnoreCase("ls") || command.equalsIgnoreCase("list all") || command.equalsIgnoreCase("list")) {
             view.listKnights(data.getKnights());
         }
         else if(command.equalsIgnoreCase("list active")) {
