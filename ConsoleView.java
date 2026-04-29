@@ -1,3 +1,6 @@
+/******************** Joshua C CS162 ********************/
+/******************* FIRST DRAFT DONE ****************/
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,9 +26,8 @@ public class ConsoleView implements GameView{
         System.out.println("Knight not found!");
     }
     public void setActiveFailed() {
-        if(GameView.activeKnights.size() == 4) {
-            System.out.println("Unable to set active knight. Only four can be active at a time.");
-        }
+        // Called if set active failed
+        System.out.println("Unable to set active knight. Only four can be active at a time.");
     }
     public void printHelp() {
         System.out.println("Unsure what to do, here are some options:\r\n" + //
@@ -101,9 +103,8 @@ public class ConsoleView implements GameView{
         }
     }
     public void printDefeated() {
-        if() {
-            System.out.println("All active knights have been defeated!" + "\n");
-        }
+        //called if all active knights are defeated
+        System.out.println("All active knights have been defeated!" + "\n");
     }
 
 

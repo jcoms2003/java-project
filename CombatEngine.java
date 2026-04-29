@@ -1,10 +1,13 @@
+/******************** Joshua C CS162 ********************/
+/******************* FIRST DRAFT DONE ****************/
+
 import java.util.Random;
 import javax.swing.text.View;
 import java.util.List;
 
 public class CombatEngine {
     private final GameData data;
-    private Random rnd;
+    private final Random rnd;
     private final GameView view; 
 
     // Constructor

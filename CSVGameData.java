@@ -115,9 +115,12 @@ public class CSVGameData extends GameData {
     }
 
     public static void main(String[] args) {
-        // Test file paths
-        String gameDataFile = "gamedata.csv";
-        String saveDataFile = "knights.csv";
+        /* 
+        ========================================================================|
+        ====================== THIS IS FOR TESTING ONLY ========================|
+        // Test file paths                                                      |
+        String gameDataFile = "gamedata.csv";                                   |   
+        String saveDataFile = "knights.csv";                                    |
 
         // Create an instance of CSVGameData
         CSVGameData gameData = new CSVGameData(gameDataFile, saveDataFile);
@@ -137,5 +140,6 @@ public class CSVGameData extends GameData {
         System.out.println("\nSaving knights to file...");
         gameData.save(saveDataFile);
         System.out.println("Knights saved to " + saveDataFile);
+        */
     }
 }
